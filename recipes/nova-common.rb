@@ -124,6 +124,10 @@ if node['openstack']['compute']['driver'].split('.').first == 'vmwareapi'
   vmware_host_pass = get_secret node['openstack']['compute']['vmware']['secret_name']
 end
 
+if node['openstack']['compute']['driver'].split('.').first == 'xenapi'
+  xenapi_pass = get_password 'user', node['openstack']['compute']['xenapi']['connection_username']
+end
+
 identity_admin_endpoint = endpoint 'identity-admin'
 auth_uri = auth_uri_transform identity_endpoint.to_s, node['openstack']['compute']['api']['auth']['version']
 service_pass = get_password 'service', 'openstack-compute'

@@ -139,7 +139,14 @@ vif_plugging_is_fatal=<%= node["openstack"]["compute"]["vif_plugging_is_fatal"] 
 vif_plugging_timeout=<%= node["openstack"]["compute"]["vif_plugging_timeout"] %>
 compute_manager=<%= node["openstack"]["compute"]["manager"] %>
 sql_connection=<%= @sql_connection %>
+<% if node["openstack"]["compute"]["driver"]=="xenapi.XenAPIDriver" %>
+connection_type=xenapi
+xenapi_connection_url=<%= node["openstack"]["compute"]["xenapi"]["connection_url"] %>
+xenapi_connection_username=<%= node["openstack"]["compute"]["xenapi"]["connection_username"] %>
+xenapi_connection_password=<%= @xenapi_pass %>
+<% else %>
 connection_type=libvirt
+<% end %>
 
 ##### NOTIFICATIONS #####
 <% if node['openstack']['compute']['config']['notification_drivers'] %>
