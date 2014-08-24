@@ -170,7 +170,8 @@ template '/etc/nova/nova.conf' do
     vmware_host_pass: vmware_host_pass,
     auth_uri: auth_uri,
     identity_admin_endpoint: identity_admin_endpoint,
-    service_pass: service_pass
+    service_pass: service_pass,
+    xenapi_pass: xenapi_pass
   )
 end
 
