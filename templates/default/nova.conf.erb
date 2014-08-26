@@ -101,7 +101,7 @@ neutron_admin_username=<%= node["openstack"]["compute"]["network"]["neutron"]["a
 neutron_admin_password=<%= @neutron_admin_password %>
 neutron_admin_auth_url=<%= @identity_endpoint.to_s %>
 linuxnet_interface_driver=<%= node["openstack"]["compute"]["network"]["neutron"]["linuxnet_interface_driver"] %>
-firewall_driver = nova.virt.firewall.NoopFirewallDriver
+firewall_driver = <%= node["openstack"]["compute"]["network"]["neutron"]["firewall_driver"] %>
 security_group_api=<%= node["openstack"]["compute"]["network"]["neutron"]["security_group_api"] %>
 service_neutron_metadata_proxy=<%= node["openstack"]["compute"]["network"]["neutron"]["service_neutron_metadata_proxy"] %>
 neutron_metadata_proxy_shared_secret=<%= @neutron_metadata_proxy_shared_secret %>
@@ -114,6 +114,9 @@ network_manager=<%= node["openstack"]["compute"]["network"]["network_manager"] %
 public_interface=<%= node["openstack"]["compute"]["network"]["public_interface"] %>
 dmz_cidr=<%= node["openstack"]["compute"]["network"]["dmz_cidr"] %>
 force_dhcp_release=<%= node["openstack"]["compute"]["network"]["force_dhcp_release"] %>
+<% if node["openstack"]["compute"]["network"]["firewall_driver"] -%>
+firewall_driver=<%= node["openstack"]["compute"]["network"]["firewall_driver"] %>
+<% end %>
 <% if node["openstack"]["compute"]["dhcp_domain"] -%>
 dhcp_domain=<%= node["openstack"]["compute"]["dhcp_domain"] %>
 <% end %>
@@ -610,3 +613,13 @@ admin_tenant_name = <%= node["openstack"]["compute"]["service_tenant_name"] %>
 admin_user = <%= node["openstack"]["compute"]["service_user"] %>
 admin_password = <%= @service_pass %>
 signing_dir = <%= node["openstack"]["compute"]["api"]["auth"]["cache_dir"] %>
+
+<% if node["openstack"]["compute"]["driver"]=="xenapi.XenAPIDriver" %>
+[xenserver]
+agent_timeout = <%= node['openstack']['compute']['xenserver']['agent_timeout'] %>
+agent_version_timeout = <%= node['openstack']['compute']['xenserver']['agent_version_timeout'] %>
+agent_resetnetwork_timeout = <%= node['openstack']['compute']['xenserver']['agent_resetnetwork_timeout'] %>
+agent_path = <%= node['openstack']['compute']['xenserver']['agent_path'] %>
+disable_agent = <%= node['openstack']['compute']['xenserver']['disable_agent'] %>
+use_agent_default = <%= node['openstack']['compute']['xenserver']['use_agent_default'] %>
+<% end %>

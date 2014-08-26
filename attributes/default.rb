@@ -164,6 +164,7 @@ default['openstack']['compute']['network']['network_manager'] = 'nova.network.ma
 default['openstack']['compute']['network']['public_interface'] = 'eth0'
 default['openstack']['compute']['network']['vlan_interface'] = 'eth0'
 default['openstack']['compute']['network']['auto_assign_floating_ip'] = false
+default['openstack']['compute']['network']['firewall_driver'] = nil
 # https://bugs.launchpad.net/nova/+bug/1075859
 default['openstack']['compute']['network']['use_single_default_gateway'] = false
 default['openstack']['compute']['network']['use_ipv6'] = false
@@ -461,3 +462,11 @@ default['openstack']['compute']['vmware']['wsdl_location'] = nil
 default['openstack']['compute']['vmware']['maximum_objects'] = 100
 # Name of Integration Bridge (string value, default br-int)
 default['openstack']['compute']['vmware']['integration_bridge'] = 'br-int'
+
+# Xen Server Agent options
+default['openstack']['compute']['xenserver']['agent_timeout'] = 30
+default['openstack']['compute']['xenserver']['agent_version_timeout'] = 300
+default['openstack']['compute']['xenserver']['agent_resetnetwork_timeout'] = 60
+default['openstack']['compute']['xenserver']['agent_path'] = '/usr/sbin/xe-update-networking'
+default['openstack']['compute']['xenserver']['disable_agent'] = false
+default['openstack']['compute']['xenserver']['use_agent_default'] = false
