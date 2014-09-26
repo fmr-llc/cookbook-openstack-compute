@@ -392,6 +392,7 @@ when 'debian'
     'compute_compute_packages' => ['nova-compute'],
     'qemu_compute_packages' => ['nova-compute-qemu'],
     'kvm_compute_packages' => ['nova-compute-kvm'],
+    'xen_compute_packages' => [],
     'compute_compute_service' => 'nova-compute',
     'compute_network_packages' => ['iptables', 'nova-network'],
     'compute_network_service' => 'nova-network',

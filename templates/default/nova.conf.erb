@@ -147,6 +147,8 @@ connection_type=xenapi
 xenapi_connection_url=<%= node["openstack"]["compute"]["xenapi"]["connection_url"] %>
 xenapi_connection_username=<%= node["openstack"]["compute"]["xenapi"]["connection_username"] %>
 xenapi_connection_password=<%= @xenapi_pass %>
+xenapi_vif_driver=<%= node["openstack"]["compute"]["xenapi"]["vif_driver"] %>
+xenapi_ovs_integration_bridge=<%= node["openstack"]["compute"]["xenapi"]["ovs_integration_bridge"] %>
 <% else %>
 connection_type=libvirt
 <% end %>
