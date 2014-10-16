@@ -437,6 +437,7 @@ maximum_objects = <%= node['openstack']['compute']['vmware']['maximum_objects'] 
 integration_bridge = <%= node['openstack']['compute']['vmware']['integration_bridge'] %>
 <% end %>
 
+<% if node['openstack']['compute']["libvirt"]["configure"] %>
 [libvirt]
 
 #
@@ -604,6 +605,8 @@ rbd_user=<%= node['openstack']['compute']['libvirt']['rbd']['rbd_user'] %>
 # The libvirt UUID of the secret for the rbd images (string value)
 rbd_secret_uuid=<%= @rbd_secret_uuid %>
 <% end -%>
+
+<% end %>
 
 [keystone_authtoken]
 auth_uri = <%= @auth_uri %>

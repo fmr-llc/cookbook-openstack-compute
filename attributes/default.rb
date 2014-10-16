@@ -187,6 +187,9 @@ default['openstack']['compute']['use_cow_images'] = true
 default['openstack']['compute']['vif_plugging_is_fatal'] = true
 default['openstack']['compute']['vif_plugging_timeout'] = 300
 
+# Set to false if libvirt is not used to manage the underlying hypervisor
+default['openstack']['compute']["libvirt"]["configure"] = true
+
 default['openstack']['compute']['libvirt']['virt_type'] = 'kvm'
 default['openstack']['compute']['libvirt']['auth_tcp'] = 'none'
 default['openstack']['compute']['libvirt']['remove_unused_base_images'] = true
