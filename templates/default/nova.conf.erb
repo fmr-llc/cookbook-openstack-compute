@@ -100,6 +100,9 @@ neutron_admin_tenant_name=<%= node["openstack"]["compute"]["network"]["neutron"]
 neutron_admin_username=<%= node["openstack"]["compute"]["network"]["neutron"]["admin_username"] %>
 neutron_admin_password=<%= @neutron_admin_password %>
 neutron_admin_auth_url=<%= @identity_endpoint.to_s %>
+<% if node["openstack"]["endpoints"]["network-api"]["insecure"] %>
+neutron_api_insecure = True
+<% end -%>
 linuxnet_interface_driver=<%= node["openstack"]["compute"]["network"]["neutron"]["linuxnet_interface_driver"] %>
 firewall_driver = <%= node["openstack"]["compute"]["network"]["neutron"]["firewall_driver"] %>
 security_group_api=<%= node["openstack"]["compute"]["network"]["neutron"]["security_group_api"] %>
@@ -130,6 +133,9 @@ use_ipv6=<%= node["openstack"]["compute"]["network"]["use_ipv6"] %>
 ##### GLANCE #####
 image_service=nova.image.glance.GlanceImageService
 glance_api_servers=<%= @glance_api_ipaddress %>:<%= @glance_api_port %>
+<% if node["openstack"]["endpoints"]["image-api"]["insecure"] %>
+glance_api_insecure=true
+<% end -%>
 
 ##### COMPUTE #####
 compute_driver=<%= node["openstack"]["compute"]["driver"] %>
@@ -618,6 +624,9 @@ admin_tenant_name = <%= node["openstack"]["compute"]["service_tenant_name"] %>
 admin_user = <%= node["openstack"]["compute"]["service_user"] %>
 admin_password = <%= @service_pass %>
 signing_dir = <%= node["openstack"]["compute"]["api"]["auth"]["cache_dir"] %>
+<% if node["openstack"]["endpoints"]["identity-api"]["insecure"] %>
+insecure = True
+<% end -%>
 
 <% if node["openstack"]["compute"]["driver"]=="xenapi.XenAPIDriver" %>
 [xenserver]
